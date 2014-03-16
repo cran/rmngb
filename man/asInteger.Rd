@@ -38,4 +38,4 @@ x <- letters[1:5]
 x[z] # not "c"
 x[asInteger(z)] # "c"
 }
-\keyword{ ~manip }
+\keyword{ manip }

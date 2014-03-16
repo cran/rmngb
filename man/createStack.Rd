@@ -9,7 +9,7 @@
 Stack Operations
 }
 \description{
-Methods to create and inetract with stacks.
+Methods to create and interact with stacks.
 }
 \usage{
 createStack(...)
@@ -51,4 +51,4 @@ stack
 pop(stack)
 stack
 }
-\keyword{ ~manip }
+\keyword{ manip }

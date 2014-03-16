@@ -18,10 +18,10 @@ vector or NULL: the values to be matched.
 }
 }
 \details{
-That \code{\%out\%} never returns NA makes it particularly useful in \code{if} conditions.
+That \code{\%out\%} never returns \code{NA} makes it particularly useful in \code{if} conditions.
 }
 \value{
-A logical vector of the same length as x, indicating if a match was located for each element of x: thus the values are TRUE or FALSE and never NA.
+A logical vector of the same length as \code{x}, indicating if a match was located for each element of \code{x}: thus the values are \code{TRUE} or \code{FALSE} and never \code{NA}.
 }
 \author{
 Antoine Filipovic Pierucci
@@ -33,4 +33,4 @@ Antoine Filipovic Pierucci
 1:5 \%out\% 3:6
 letters[letters \%out\% c("a", "b")]
 }
-\keyword{ ~logic }
+\keyword{ logic }

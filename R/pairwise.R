@@ -1,42 +1,75 @@
-pairwise.chisq.test <- function(var, class,
-                                dec = 3, p.adj = p.adjust.methods) {
-    s.title <- paste(deparse(substitute(var)), "and", deparse(substitute(class)))
+pairwise.chisq.test <- function(x, ...)
+    UseMethod("pairwise.chisq.test")
+
+pairwise.chisq.test.table <- function(x, p.adj = p.adjust.methods,
+                                      DNAME = NULL, ...) {
+    if (is.null(DNAME))
+        DNAME <- deparse(substitute(tab))
     p.adj <- match.arg(p.adj)
-    x.tab <- table(class, var)
-    k <- dim(x.tab)[1]
-    p.values <- rep(NA, k ^ 2)
+    
+    k <- dim(x)[1]
+    p.value <- rep(NA, k ^ 2)
     for (row1 in 1:(k - 1)) {
         for (row2 in (row1 + 1):k) {
             xi <- asInteger(k * (row1 - 1) + row2)
-            p.values[xi] <- chisq.test(x.tab[c(row1, row2), ])$p.value
+            p.value[xi] <- chisq.test(x[c(row1, row2), ])$p.value
         }
     }
-    p.values <- p.adjust(p.values, method = p.adj)
-    dn <- list(dimnames(x.tab)[[1]],
-               dimnames(x.tab)[[1]])
-    mat.p.values <- matrix(p.values, nrow = k, dimnames = dn)
-    cat(s.title, "\n\n")
-    print(mat.p.values, na.print = "-", digits = dec)
-    cat("\nP value adjustment method:", p.adj,"\n\n")
+    
+    p.value <- p.adjust(p.value, method = p.adj)
+    dn <- list(dimnames(x)[[1]],
+               dimnames(x)[[1]])
+    p.value <- matrix(p.value, nrow = k, dimnames = dn)
+    
+    structure(list(method = "Pearson's Chi-squared tests",
+                   data.name = DNAME,
+                   p.value = p.value,
+                   p.adjust.method = p.adj),
+              class = "pairwise.htest")
 }
-pairwise.fisher.test <- function(var, class,
-                                 dec = 3, p.adj = p.adjust.methods) {
-    s.title <- paste(deparse(substitute(var)), "and", deparse(substitute(class)))
+
+pairwise.chisq.test.default <- function(x, g, p.adj = p.adjust.methods, ...) {
+    DNAME <- paste(deparse(substitute(x)), "and", deparse(substitute(g)))
     p.adj <- match.arg(p.adj)
-    x.tab <- table(class, var)
-    k <- dim(x.tab)[1]
-    p.values <- rep(NA, k ^ 2)
+    tab <- table(g, x)
+    
+    pairwise.chisq.test(tab, p.adj = p.adj, DNAME = DNAME)
+}
+
+pairwise.fisher.test <- function(x, ...)
+    UseMethod("pairwise.fisher.test")
+
+pairwise.fisher.test.table <- function(x, p.adj = p.adjust.methods,
+                                       DNAME = NULL, ...) {
+    if (is.null(DNAME))
+        DNAME <- deparse(substitute(tab))
+    p.adj <- match.arg(p.adj)
+    
+    k <- dim(x)[1]
+    p.value <- rep(NA, k ^ 2)
     for (row1 in 1:(k - 1)) {
         for (row2 in (row1 + 1):k) {
             xi <- asInteger(k * (row1 - 1) + row2)
-            p.values[xi] <- fisher.test(x.tab[c(row1, row2), ])$p.value
+            p.value[xi] <- fisher.test(x[c(row1, row2), ])$p.value
         }
     }
-    p.values <- p.adjust(p.values, method = p.adj)
-    dn <- list(dimnames(x.tab)[[1]],
-               dimnames(x.tab)[[1]])
-    mat.p.values <- matrix(p.values, nrow = k, dimnames = dn)
-    cat(s.title, "\n\n")
-    print(mat.p.values, na.print = "-", digits = dec)
-    cat("\nP value adjustment method:", p.adj,"\n\n")
+    
+    p.value <- p.adjust(p.value, method = p.adj)
+    dn <- list(dimnames(x)[[1]],
+               dimnames(x)[[1]])
+    p.value <- matrix(p.value, nrow = k, dimnames = dn)
+    
+    structure(list(method = "Fisher's Exact Tests for Count Data",
+                   data.name = DNAME,
+                   p.value = p.value,
+                   p.adjust.method = p.adj),
+              class = "pairwise.htest")
+}
+
+pairwise.fisher.test.default <- function(x, g, p.adj = p.adjust.methods, ...) {
+    DNAME <- paste(deparse(substitute(x)), "and", deparse(substitute(g)))
+    p.adj <- match.arg(p.adj)
+    tab <- table(g, x)
+    
+    pairwise.fisher.test(tab, p.adj = p.adj, DNAME = DNAME)
 }

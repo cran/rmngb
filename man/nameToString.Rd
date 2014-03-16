@@ -27,4 +27,4 @@ Antoine Filipovic Pierucci
 foo <- 1:10
 nameToString(foo) # "foo"
 }
-\keyword{ ~misc }
+\keyword{ misc }

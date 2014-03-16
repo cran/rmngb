@@ -40,4 +40,4 @@ model1 <- glm(cbind(ncases, ncontrols) ~ agegp + tobgp * alcgp,
               data = esoph, family = binomial())
 diagBinom(model1)
 }
-\keyword{ ~misc }
+\keyword{ misc }

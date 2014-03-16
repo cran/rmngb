@@ -41,4 +41,4 @@ Antoine Filipovic Pierucci
 \examples{
 plotScatter(rnorm(50), rnorm(50))
 }
-\keyword{ ~misc }
+\keyword{ misc }

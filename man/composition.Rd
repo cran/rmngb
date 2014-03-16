@@ -24,4 +24,4 @@ Antoine Filipovic Pierucci
 f <- composition(mean, log, function(x) x^2)
 f(1:10) == mean(log((1:10)^2))
 }
-\keyword{ ~misc }
+\keyword{ misc }

@@ -1,5 +1,8 @@
 \name{plotICC}
 \alias{plotICC}
+\alias{plotICC.default}
+\alias{plotICC.matrix}
+\alias{plotICC.data.frame}
 \title{
 Visualization of Intra Class Correlation
 }
@@ -7,17 +10,23 @@ Visualization of Intra Class Correlation
 Visually represents Intra Class Correlation.
 }
 \usage{
-plotICC(x, subjects, p = FALSE, ...)
+plotICC(x, ...)
+\method{plotICC}{default}(x, subjects, p = FALSE, ptype = 4, ...)
+\method{plotICC}{matrix}(x, p = FALSE, ptype = 4, ...)
+\method{plotICC}{data.frame}(x, p = FALSE, ptype = 4, ...)
 }
 \arguments{
   \item{x}{
-vector with the measurement of interest.
+vector with the measurement of interest, or matrix with one line per individual and one column per measurement.
 }
   \item{subjects}{
-vector with a unique identifiant per subject.
+vector with a unique identifiant per subject, not used if \code{x} is a matrix.
 }
   \item{p}{
-logical. Should points be added for each unique measurement (useful if there is more than 2 measurements per subject).
+logical. Should points be added for each unique measurement (useful if there is more than 2 measurements per subject)?
+}
+  \item{ptype}{
+integer. Plotting symbol for the points, corresponds to \code{pch}. See \code{\link{points}}.
 }
   \item{...}{
 additional arguments passed to \code{plot}.
@@ -41,4 +50,4 @@ m2 <- m1 + subject / 5
 plotICC(m2, subject) # better ICC
 plotICC(m2, subject, TRUE) # with points
 }
-\keyword{ ~misc }
+\keyword{ misc }

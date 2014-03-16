@@ -1,23 +1,6 @@
-blandAltman <- function(x, y,
-                         xlab = "Average", ylab = "Difference",
-                         main = "Bland-Altman plot", ...) {
-    xMean <- (x + y) / 2
-    yDiff <- x - y
-    ylim.min <- min(mean(yDiff, na.rm = TRUE) - 2.1 * sd(yDiff, na.rm = TRUE),
-                    min(yDiff, na.rm = TRUE), na.rm = TRUE)
-    ylim.max <- max(mean(yDiff, na.rm = TRUE) + 2.1 * sd(yDiff, na.rm = TRUE),
-                    max(yDiff,na.rm = TRUE), na.rm = TRUE)
-    plot(xMean, yDiff, xlab = xlab, ylab = ylab,
-          main = main,
-         ylim = c(ylim.min, ylim.max))
-    abline(h = mean(yDiff, na.rm = T) - c(-2, 0, 2) * sd(yDiff, na.rm = T),
-           lty = c(3, 2, 3))
-}
-
 plotCor <- function(tab,
                     method = c("pearson", "kendall", "spearman"),
                     formatCor, colCor, ...) {
-    # add par() restoration in case of crash
     if (missing(formatCor)) {
         formatCor <- function(test, n = 3, ...) {
             if (is.null(test$conf.int)) {
@@ -52,27 +35,28 @@ plotCor <- function(tab,
               xaxt = "n",
               yaxt = "n")
     
-    for (i in 1:nc) {
-        for (j in 1:nc) {
-            if (i == j) {
-                plot.new()
-                text(.5, .5, names(tab)[i])
-            } else {
-                if (j > i) {
-                    test <- cor.test(tab[, j],
-                                     tab[, i],
-                                     method = method)
-                    test.text <- formatCor(test, ...)
+    try({
+        for (i in 1:nc) {
+            for (j in 1:nc) {
+                if (i == j) {
                     plot.new()
-                    rect(0, 0, 1, 1, col = colCor(test),
-                         border = NA)
-                    text(.5, .5, test.text)
+                    text(.5, .5, names(tab)[i])
                 } else {
-                    plot(tab[, j], tab[, i])
+                    if (j > i) {
+                        test <- cor.test(tab[, j],
+                                         tab[, i],
+                                         method = method)
+                        test.text <- formatCor(test, ...)
+                        plot.new()
+                        rect(0, 0, 1, 1, col = colCor(test),
+                             border = NA)
+                        text(.5, .5, test.text)
+                    } else {
+                        plot(tab[, j], tab[, i])
+                    }
                 }
             }
-        }
-    }
+        }})
     
     par(op)
 }
@@ -86,7 +70,10 @@ plotDensity <- function(x, col = "red", lwd = 2, ...) {
     lines(d, lwd = lwd)
 }
 
-plotICC <- function(x, subjects, p = FALSE, ...) {
+plotICC <- function(x, ...)
+    UseMethod("plotICC")
+
+plotICC.default <- function(x, subjects, p = FALSE, ptype = 4, ...) {
     lMax <- max(tabS <- table(subjects)) + 1
     id <- names(tabS)
     FunC <- function(a, lMax) {
@@ -97,16 +84,25 @@ plotICC <- function(x, subjects, p = FALSE, ...) {
     matY <- matY[ , order(colMeans(matY, na.rm = TRUE))]
     matX <- matrix(rep(seq_along(id), each = lMax), nrow = lMax)
     plot(matX, matY, type = "l", ...)
-    if (p) points(matX, matY, pch = 4)
+    if (p) points(matX, matY, pch = ptype)
+}
+
+plotICC.data.frame <- function(x, p = FALSE, ptype = 4, ...) {
+    nObs <- ncol(x)
+    nSubjects <- nrow(x)
+    x <- t(x)
+    dim(x) <- NULL
+    subjects <- rep(seq(length.out = nSubjects), each = nObs)
+    plotICC(x, subjects, p = p, ptype = ptype, ...)
+}
+
+plotICC.matrix <- function(x, p = FALSE, ptype = 4, ...) {
+    x <- as.data.frame(x)
+    plotICC(x, p = p, ptype = ptype, ...)
 }
 
 plotScatter <- function(x, y, lty = 1, lwd = 2, colLine = "red", ...) {
     m <- na.omit(cbind(x, y))
     plot(m, ...)
     lines(lowess(m), col = colLine, lwd = lwd, lty = lty)
-}
-
-qqnorm2 <- function(var, lty = 2, lwd = 1, col = "black", ...) {
-    qqnorm(var, ...)
-    abline(a = mean(var, na.rm = TRUE), b = sd(var, na.rm = TRUE), lty = lty, lwd = lwd, col = col)
 }

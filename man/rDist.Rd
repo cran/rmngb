@@ -47,4 +47,4 @@ plot(rTest) # look at the estimate
 rTest(10) # generate random values from the estimate
 hist(rTest(1e3)) # density of randomly generated values
 }
-\keyword{ ~distribution }
+\keyword{ distribution }

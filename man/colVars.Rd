@@ -1,4 +1,4 @@
-\name{colVars}
+\name{Vars}
 \alias{colVars}
 \alias{rowVars}
 \title{
@@ -53,4 +53,4 @@ x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
 rowVars(x); colVars(x)
 # more examples should be included for the other arguments
 }
-\keyword{ ~univar }
+\keyword{ univar }

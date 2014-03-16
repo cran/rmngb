@@ -29,4 +29,4 @@ Antoine Filipovic Pierucci
 \examples{
 invDiag(5)
 }
-\keyword{ ~misc }
+\keyword{ misc }

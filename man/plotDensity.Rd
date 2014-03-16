@@ -35,4 +35,4 @@ antoine Filipovic Pierucci
 \examples{
 plotDensity(rnorm(50))
 }
-\keyword{ ~misc }
+\keyword{ misc }

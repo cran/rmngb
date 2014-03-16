@@ -28,4 +28,4 @@ Antoine Filipovic Pierucci
 timeVar()
 
 }
-\keyword{ ~misc }
+\keyword{ misc }

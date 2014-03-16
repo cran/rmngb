@@ -14,7 +14,7 @@ rmAttr(x, except = "class")
 an object whose attributes should be removed.
 }
   \item{except}{
-character vector. Attributes that should not be removed.\code{NULL} to remove all attributes.
+character vector. Attributes that should not be removed. \code{NULL} to remove all attributes.
 }
 }
 \value{
@@ -33,4 +33,4 @@ class(x1 <- rmAttr(x)) # still a table, without names
 (x2 <- rmAttr(x, NULL))
 class(x2) # integer vector
 }
-\keyword{ ~misc }
+\keyword{ misc }

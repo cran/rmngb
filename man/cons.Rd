@@ -44,4 +44,4 @@ a <- cons(rnorm(10), data.frame(a = 1:5, b = 6:10))
 car(a)
 cdr(a)
 }
-\keyword{ ~manip }
+\keyword{ manip }

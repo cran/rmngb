@@ -1,0 +1,6 @@
+Version 0.1-2 (2014-03-16)
+-------------------------------------------------------------------
+ * pairwise.chisq and pairwise.fisher now behave like other pairwise.htest functions.
+ * added more options and methods to bland.altman and PlotICC.
+ * more examples for plotCor, and better error recovery.
+ * removed qqnorm2.

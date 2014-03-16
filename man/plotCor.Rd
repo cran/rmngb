@@ -19,10 +19,10 @@ a dataframe. Contain the variable whose correlation is of interest.
 among \code{pearson}, \code{kendall} and \code{spearman}. Method used to compute the correlation coefficient.
 }
   \item{formatCor}{
-a function. Applied to a \code{cor} object and returning a character string, formats the display of the correlation coefficient.
+a function. Applied to a \code{htest} object and returning a character string, formats the display of the correlation coefficient.
 }
   \item{colCor}{
-a function. Applied to a \code{cor} object and returning a color (character string or \code{\link{rgb}}).
+a function. Applied to a \code{htest} object and returning a color (character string or \code{\link{rgb}}).
 }
   \item{...}{
 additional arguments passed to \code{formatCor}.
@@ -40,9 +40,14 @@ Nothing of interest.
 Antoine Filipovic Pierucci
 }
 \seealso{
-\code{\link{cor}}.
+\code{\link{cor.test}}.
 }
 \examples{
-plotCor(iris[, 1:4])
+x <- iris[, 1:4]
+plotCor(x)
+
+plotCor(x, formatCor = function(x) round(x$estimate, 2))
+plotCor(x, colCor = function(x) if (x$estimate > 0) "green" else "yellow")
+
 }
-\keyword{ ~misc }
+\keyword{ misc }

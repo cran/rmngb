@@ -106,3 +106,14 @@ plotScatter <- function(x, y, lty = 1, lwd = 2, colLine = "red", ...) {
     plot(m, ...)
     lines(lowess(m), col = colLine, lwd = lwd, lty = lty)
 }
+
+qqplot2 <- function(y, fQuant = function(q, x) qnorm(q,
+                                                     mean(x, na.rm = TRUE),
+                                                     sd(x, na.rm = TRUE)), 
+                    line = TRUE, xlab = "Theoretical Quantiles", ...) {
+    qy <- ppoints(length(y))
+    qqplot(fQuant(qy, y), y,
+           xlab = xlab, ...)
+    if (line)
+        abline(a = 0, b = 1, lty = 2)
+}

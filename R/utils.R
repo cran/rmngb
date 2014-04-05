@@ -30,3 +30,15 @@ Rnumber <- function()
 
 Rname <- function()
     R.Version()$nickname
+
+closest <- function(x, y, tol = +Inf)
+    (d <- abs(x - y)) == min(d) & (d < tol)
+
+whichClosest <- function(...)
+    which(closest(...))
+
+whichClosest1 <- function(...)
+    if (length(res <- whichClosest(...))) res[1] else vector(class(res))
+
+locf <- function(x)
+    (x2 <- na.omit(x))[length(x2)]

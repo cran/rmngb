@@ -61,13 +61,13 @@ plotCor <- function(tab,
     par(op)
 }
 
-plotDensity <- function(x, col = "red", lwd = 2, ...) {
+plotDensity <- function(x, col = "black", lwd = 2, ...) {
     d <- density(na.omit(x))
     h <- hist(x, plot = FALSE)
     plot(h, xlim = c(min(d$x), max(d$x)),
          ylim = c(0, max(c(d$y, h$density))),
          freq = FALSE, ...)
-    lines(d, lwd = lwd)
+    lines(d, lwd = lwd, col = col)
 }
 
 plotICC <- function(x, ...)
@@ -116,4 +116,26 @@ qqplot2 <- function(y, fQuant = function(q, x) qnorm(q,
            xlab = xlab, ...)
     if (line)
         abline(a = 0, b = 1, lty = 2)
+}
+
+ablineCI <- function(x, level = .95, lty = 2, ...) {
+    p <- length(cx <- coef(x))
+    if (p > 2) 
+        warning(sprintf("only using the first two of %d regression coefficients", 
+                        p))
+    stopifnot(inherits(x, "lm"))
+    
+    ci <- predict(x, interval = "confidence", level = level)
+    
+    xname <- (n <- names(cx))[n != "(Intercept)"][1]
+    xval <- x$model[[xname]]
+    
+    ci <- ci[order(xval), ]
+    xval <- sort(xval)
+    
+    lines(xval, ci[, "lwr"], lty = lty, ...)
+    lines(xval, ci[, "upr"], lty = lty, ...)
+    
+    invisible(structure(cbind(xval, ci),
+                        dimnames = list(NULL, c(xname, colnames(ci)))))
 }

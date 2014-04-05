@@ -1,13 +1,27 @@
+Version 0.3-1 (2014-04-26)
+-------------------------------------------------------------------
+Fixes
+ * corrected bug in plotDensity where argument col was not passed to lines.
+New features
+ * added approximate matching functions.
+ * added kde2dQuantile.
+ * added locf.
+ * added ablineCI.
+
 Version 0.2-1 (2014-04-05)
 -------------------------------------------------------------------
- * added vswitch.
+Fixes
  * debugged diagBinom and added an ROC curve without using pROC.
+New features
+ * added vswitch.
  * added qqplot2, a more versatile version of qqnorm2.
  * added Rname et Rnumber.
 
 Version 0.1-2 (2014-03-16)
 -------------------------------------------------------------------
+Fixes
  * pairwise.chisq and pairwise.fisher now behave like other pairwise.htest functions.
  * added more options and methods to bland.altman and plotICC.
  * more examples for plotCor, and better error recovery.
+Removed
  * removed qqnorm2.

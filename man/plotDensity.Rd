@@ -7,7 +7,7 @@ Histogram and Density Plot
 Plot a histogram and a gaussian kernel density estimate of the data.
 }
 \usage{
-plotDensity(x, col = "red", lwd = 2, ...)
+plotDensity(x, col = "black", lwd = 2, ...)
 }
 \arguments{
   \item{x}{

@@ -10,12 +10,6 @@ invDiag <- function(x) {
 "%out%" <- function(x, y)
     ! x %in% y
 
-reverse <- function(x) {
-    if (length(dim(x)) > 1)
-        stop("Objects with more than 1 dimension are not suported.")
-    if(l <- length(x)) x[l:1] else x
-}
-
 nameToString <- function(x)
     deparse(substitute(x))
 
@@ -42,3 +36,9 @@ whichClosest1 <- function(...)
 
 locf <- function(x)
     (x2 <- na.omit(x))[length(x2)]
+
+colClasses <- function(x)
+    unlist(lapply(lapply(x, class), function(x) x[length(x)]))
+
+nDistinct <- function(x)
+    length(table(x))

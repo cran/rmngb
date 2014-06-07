@@ -1,3 +1,11 @@
+Version 0.4-1 (2014-06-07)
+-------------------------------------------------------------------
+New features
+ * added colClasses, nDistinct.
+ * added outerList and zipLists.
+Removed
+  * removed reverse, since it already exists (rev).
+
 Version 0.3-1 (2014-04-26)
 -------------------------------------------------------------------
 Fixes

@@ -42,3 +42,9 @@ colClasses <- function(x)
 
 nDistinct <- function(x)
     length(table(x))
+
+interleave <- function(x, y) {
+  iX <- 2 * seq_along(x) - 1
+  iY <- 2 * seq_along(y)
+  c(x, y)[order(c(iX, iY))]
+}

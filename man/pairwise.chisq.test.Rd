@@ -45,7 +45,7 @@ Calculate Chi-square or Fisher test p-values for all combinaisons of the levels 
 Object of class \code{"pairwise.htest"}.
 }
 \references{
-Original functions written by Dr Jean-Philipe Jais.
+Original functions written by Dr Jean-Philippe Jais.
 }
 \author{
 Antoine Filipovic Pierucci

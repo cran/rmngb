@@ -1,6 +1,6 @@
-d3575925fd302e0c372687904c641faf *DESCRIPTION
+07af98e0265548aa9470cf9c32da3e4a *DESCRIPTION
 f35991a8f622053178e39e767dd5752a *NAMESPACE
-85ccd398843019692d03dbb732a86d1a *NEWS
+6493688944abfc89dddb16cd5b5820f4 *NEWS
 c70f5711cbe41933bb90198fab9c72a5 *R/blandaltman.R
 3aaa89fb6a86d14c70421244762aef87 *R/functional.R
 89fd4a73fc9f65669587cc97b6478545 *R/kde2dQuantile.R
@@ -11,7 +11,7 @@ ff2bf25914d5c708be496129b8e3910e *R/listOperations.R
 65c5aa9150451fffde7ef2ab6ef29219 *R/resampling.R
 235544220b970493d50c7355ff214cee *R/stack.R
 94b4edb86be1aa0d12e5c109ad330a94 *R/surv.R
-3bb894dbbbf67efb344895f833598165 *R/utils.R
+6f96cf4c8c1c4d3f6708e7fb233aa7e8 *R/utils.R
 56c346578378d26f21a2ddfba0a3a190 *R/vars.R
 38f06435bacf926c43583248d9aab409 *R/vswitch.R
 587871be8921e387379e748fbd8b46cb *man/ablineCI.Rd
@@ -24,6 +24,7 @@ e32eac28675fba14f696eaf1bc4b385e *man/composition.Rd
 cd68901cbc8348af88d4934f8094f49b *man/cons.Rd
 6d344fc2980af106f35089e80ac198ab *man/createStack.Rd
 d59c4acb87784f22854556ff6d20b070 *man/diagBinom.Rd
+c633a918326e35370c5090966dc3b087 *man/interleave.Rd
 f58fe1d9a819c7cfda7e16dfc107aeea *man/invDiag.Rd
 ae10f5032d31bafe32856eb6f1fc37c2 *man/kde2dQuantile.Rd
 5ea77f52e0cf3400b401b6c992a1ca67 *man/locf.Rd
@@ -31,7 +32,7 @@ ae10f5032d31bafe32856eb6f1fc37c2 *man/kde2dQuantile.Rd
 14b7249b398d84d08a67319e4d9e8502 *man/nameToString.Rd
 01999181693d759b55cdb55e81ebf03f *man/out.Rd
 a17b447698fea09626b27ce250b8719a *man/outerList.Rd
-eca29073e3250de4b8c4d33451598bf3 *man/pairwise.chisq.test.Rd
+59b1fb5aad8255f4027ce241a9c3e2cc *man/pairwise.chisq.test.Rd
 742928bbbfd04e0eb967f5c73080c20a *man/plotCor.Rd
 4c5ae66da0319a320e6891d05d507037 *man/plotDensity.Rd
 a21a6ebf5814e6623ad51ba8fedab74e *man/plotICC.Rd

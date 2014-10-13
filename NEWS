@@ -1,3 +1,12 @@
+Version 0.6-1 (2014-10-13)
+-------------------------------------------------------------------
+Fixes
+ * modified DESCRIPTION file.
+New features
+ * added mergeV.
+Removed
+  * remove whichClosest and whichClosest1, Hmisc implementations are faster (x2) and are now imported.
+
 Version 0.5-1 (2014-09-21)
 -------------------------------------------------------------------
 New features
